@@ -40,10 +40,8 @@ const MovieDetails = () => {
     }
 
     try {
-      // ✅ Pehle test karein ki endpoint available hai ya nahi
       console.log("Testing favorite endpoints...");
       
-      // Different possible endpoints try karein
       const endpoints = [
         `${API_URL}/favorite/add`,
         `${API_URL}/favorites/add`,
@@ -105,7 +103,7 @@ const MovieDetails = () => {
     }
   };
 
-  // Temporary function - Agar favorite backend setup nahi hai toh
+
   const handleAddToFavoritesLocal = () => {
     const token = localStorage.getItem("token");
     
@@ -115,11 +113,9 @@ const MovieDetails = () => {
       return;
     }
 
-    // Local storage mein save karein temporarily
     try {
       const userFavorites = JSON.parse(localStorage.getItem('userFavorites') || '[]');
       
-      // Check if already in favorites
       const alreadyExists = userFavorites.some(fav => fav._id === movie._id);
       
       if (alreadyExists) {
@@ -127,7 +123,6 @@ const MovieDetails = () => {
         return;
       }
 
-      // Add to favorites
       userFavorites.push(movie);
       localStorage.setItem('userFavorites', JSON.stringify(userFavorites));
       
@@ -143,14 +138,12 @@ const MovieDetails = () => {
   return (
     <div className="px-6 md:px-16 lg:px-40 pt-40">
       <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
-        {/* Movie Poster */}
         <img
           src={movie.backdrop_path}
           alt={movie.title}
           className="max-md:mx-auto rounded-xl h-104 max-w-70 object-cover"
         />
 
-        {/* Movie Info */}
         <div className="relative flex flex-col gap-3">
           <p className="text-primary">{movie.language || "N/A"}</p>
           <h1 className="text-4xl font-semibold text-white">{movie.title}</h1>
@@ -192,9 +185,8 @@ const MovieDetails = () => {
               Buy Tickets
             </a>
             
-            {/* Favorite Button - Temporary local storage solution use karein */}
             <button
-              onClick={handleAddToFavoritesLocal} // ✅ Change to local storage function
+              onClick={handleAddToFavoritesLocal} 
               className="bg-gray-700 p-2.5 rounded-full transition cursor-pointer active:scale-95 hover:bg-red-500 hover:text-white text-white"
             >
               <Heart className="w-5 h-5" />
@@ -221,7 +213,6 @@ const MovieDetails = () => {
             </div>
           </div>
 
-          {/* Date Selection Section */}
           <DateSelect dateTime={movie.showDates || {}} movieId={id} />
         </div>
       </div>

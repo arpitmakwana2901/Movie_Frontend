@@ -21,10 +21,8 @@ const Favorite = () => {
     setLoading(true);
 
     try {
-      // ✅ Pehle backend se try karein
       console.log("Trying to fetch from backend...");
 
-      // Agar backend available nahi hai toh local storage use karein
       const localFavorites = JSON.parse(
         localStorage.getItem("userFavorites") || "[]"
       );

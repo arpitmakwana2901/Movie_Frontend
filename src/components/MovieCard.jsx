@@ -10,7 +10,6 @@ const MovieCard = ({ movie, showBuyButton = true }) => {
   const navigate = useNavigate();
 
   const handleBuyTicket = async () => {
-    // Get token from localStorage
     const token = localStorage.getItem("token");
 
     if (!token) {

@@ -6,8 +6,14 @@ const BlurCircle = ({
 }) => {
   return (
     <div
-      className="absolute -z-50 h-58 w-58 aspect-square rounded-full bg-primary/30 blur-3xl"
-      style={{ top: top, left: left, right: right, bottom: bottom }}
+      className="absolute w-64 h-64 md:w-96 md:h-96 rounded-full bg-primary/20 blur-[100px] pointer-events-none"
+      style={{ 
+        top: top, 
+        left: left, 
+        right: right, 
+        bottom: bottom,
+        zIndex: -1
+      }}
     ></div>
   );
 };

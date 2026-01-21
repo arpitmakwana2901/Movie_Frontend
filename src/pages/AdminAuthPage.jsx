@@ -20,7 +20,7 @@ const AdminAuthPage = () => {
     }
   }, [isAuthenticated, token, navigate]);
 
-  const [mode, setMode] = useState("login"); // 'login' | 'register'
+  const [mode, setMode] = useState("login"); 
 
   const [data, setData] = useState({
     userName: "",
@@ -54,7 +54,6 @@ const AdminAuthPage = () => {
         return;
       }
 
-      // Auto login after successful registration
       login(newToken, { firstName: "Admin", lastName: "", email: data.email });
       toast.success("✅ Admin registered & logged in");
       navigate("/admin", { replace: true });
@@ -85,7 +84,6 @@ const AdminAuthPage = () => {
 
       const payload = decodeJwtPayload(token);
       if (payload?.role !== "admin") {
-        // Ensure we don't keep a non-admin token in storage.
         logout();
         toast.error("⛔ This account is not an admin");
         return;

@@ -77,7 +77,7 @@ const SeatLayout = () => {
         return;
       }
 
-      // 1) Lock / reserve seats (updates SeatLayout + creates seat-booking record)
+    
       const seatRes = await axios.post(
         `${API_URL}/seat-booking/book-seats`,
         {
@@ -101,7 +101,7 @@ const SeatLayout = () => {
         return total + (section?.price || 0);
       }, 0);
 
-      // 2) Create a Checkout booking in DB (this gives a REAL Mongo _id used by Pay Now)
+
       const checkoutRes = await axios.post(
         `${API_URL}/checkout/create-checkout`,
         {
@@ -259,7 +259,6 @@ const SeatLayout = () => {
     <div className="flex flex-col md:flex-row px-4 md:px-16 lg:px-32 py-6 md:py-10 md:pt-16 text-white relative min-h-screen">
       <Toaster position="top-center" reverseOrder={false} />
 
-      {/* Mobile Menu Button */}
       <div className="md:hidden fixed top-4 right-4 z-50">
         <button
           onClick={toggleMobileMenu}
@@ -273,15 +272,12 @@ const SeatLayout = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div
           className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
-
-      {/* Sidebar: Timings - Mobile Slide-in */}
       <div
         className={`w-4/5 max-w-sm fixed top-0 left-0 h-full bg-[#1e0b0b] border-r border-[#3a1a1a] z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -308,7 +304,6 @@ const SeatLayout = () => {
         </div>
       </div>
 
-      {/* Sidebar: Timings - Desktop */}
       <div className="hidden md:block w-full md:w-1/4 bg-[#1e0b0b] border border-[#3a1a1a] rounded-lg py-10 h-max md:sticky md:top-30">
         <p className="text-lg font-semibold px-6">Available Timings</p>
         <div className="mt-5">
@@ -329,12 +324,10 @@ const SeatLayout = () => {
         </div>
       </div>
 
-      {/* Main: Seat layout */}
       <div className="flex-1 flex flex-col items-center md:ml-6 lg:ml-8 relative pt-16 md:pt-0">
         <BlurCircle top="-100px" left="-100px" />
         <BlurCircle bottom="0" right="0" />
 
-        {/* Mobile Selected Time Display */}
         {selectedTime && (
           <div className="md:hidden bg-[#2a0f0f] px-4 py-2 rounded-lg mb-4">
             <p className="text-green-500 font-medium text-sm text-center">
@@ -353,7 +346,6 @@ const SeatLayout = () => {
           </p>
         )}
 
-        {/* Seat Layout Container with Scroll for Mobile */}
         <div className="w-full overflow-x-auto pb-4">
           <div className="min-w-min px-2">
             {Object.entries(seatRows).map(([key, section]) => (
@@ -364,12 +356,10 @@ const SeatLayout = () => {
           </div>
         </div>
 
-        {/* Screen */}
         <div className="mt-4 md:mt-6 w-full max-w-2xl bg-gray-400 h-2 rounded-lg flex items-center justify-center mx-4">
           <p className="text-gray-800 text-xs font-bold">SCREEN</p>
         </div>
 
-        {/* Legend */}
         <div className="flex items-center gap-3 md:gap-4 mt-6 text-xs md:text-sm flex-wrap justify-center px-4">
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 md:w-4 md:h-4 border border-green-500 bg-green-500"></div>
@@ -389,7 +379,6 @@ const SeatLayout = () => {
           </div>
         </div>
 
-        {/* Selected Seats Summary - Sticky on Mobile */}
         {selectedSeats.length > 0 && (
           <div className="mt-6 p-4 bg-[#2a0f0f] rounded-lg w-full max-w-2xl sticky bottom-4 md:static">
             <p className="text-sm text-gray-300">
@@ -412,7 +401,6 @@ const SeatLayout = () => {
           </div>
         )}
 
-        {/* Checkout Button */}
         <div className="w-full flex justify-center mt-6 md:mt-10 pb-6 md:pb-0">
           <button
             onClick={handleCheckout}
